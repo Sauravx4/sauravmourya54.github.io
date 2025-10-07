@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saurav - Portfolio</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #fff;
+            color: #e74c3c;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #e74c3c;
+        }
+
+        /* Profile Section */
+        .profile-section {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .profile-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .profile-image-container {
+            text-align: center;
+        }
+
+        .profile-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-placeholder {
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: white;
+        }
+
+        .download-resume {
+            background: #e74c3c;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .download-resume:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        .profile-details h2 {
+            font-size: 2.5rem;
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .profile-details .title {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .detail-item {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #e74c3c;
+            font-size: 0.9rem;
+        }
+
+        .detail-value {
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: #e74c3c;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+        }
+
+        /* Bio Section */
+        .bio-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            background: white;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Qualifications Section */
+        .qualifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .qualification-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #e74c3c;
+        }
+
+        .qualification-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .qualification-card h3 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .qualification-card .institution {
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .qualification-card .year {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content h3 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: #f8f9fa;
+            color: #e74c3c;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Achievements Section */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .achievement-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 2rem;
+        }
+
+        /* Query Section */
+        .query-section {
+            background: #f8f9fa;
+        }
+
+        .query-content {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .query-form {
+            display: grid;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #e74c3c;
+        }
+
+        /* Collaboration Section */
+        .collaboration-section {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .collaboration-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .collaboration-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .collaboration-form .form-group {
+            grid-column: span 1;
+        }
+
+        .collaboration-form .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .collaboration-form input,
+        .collaboration-form textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .collaboration-form input::placeholder,
+        .collaboration-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .collaboration-form input:focus,
+        .collaboration-form textarea:focus {
+            border-color: white;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            padding: 1rem 2rem;
+            background: white;
+            color: #e74c3c;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .profile-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .profile-image {
+                width: 250px;
+                height: 250px;
+            }
+
+            .profile-placeholder {
+                width: 200px;
+                height: 200px;
+                font-size: 4rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .collaboration-form {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Saurav</div>
+            <ul class="nav-links">
+                <li><a onclick="scrollToSection('hero')">Home</a></li>
+                <li><a onclick="scrollToSection('profile')">About</a></li>
+                <li><a onclick="scrollToSection('bio')">Bio</a></li>
+                <li><a onclick="scrollToSection('qualifications')">Qualifications</a></li>
+                <li><a onclick="scrollToSection('projects')">Projects</a></li>
+                <li><a onclick="scrollToSection('achievements')">Achievements</a></li>
+                <li><a onclick="scrollToSection('query')">Query</a></li>
+                <li><a onclick="scrollToSection('collaboration')">Work Together</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Saurav</h1>
+            <p class="subtitle">Full Stack Developer & Creative Problem Solver</p>
+            <div class="hero-buttons">
+                <button class="btn" onclick="scrollToSection('profile')">View Profile</button>
+                <button class="btn btn-outline" onclick="scrollToSection('projects')">See Projects</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Section -->
+    <section id="profile" class="profile-section">
+        <div class="profile-container">
+            <div class="profile-image-container">
+                <div class="profile-image">
+                    <div class="profile-placeholder">👨‍💻</div>
+                </div>
+                <button class="download-resume" onclick="downloadResume()">
+                    📄 Download Resume
+                </button>
+            </div>
+            
+            <div class="profile-details">
+                <h2>Saurav</h2>
+                <p class="title">Full Stack Developer & Software Engineer</p>
+                
+                <div class="details-grid">
+                    <div class="detail-item">
+                        <div class="detail-label">EMAIL</div>
+                        <div class="detail-value">saurav@example.com</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">PHONE</div>
+                        <div class="detail-value">+91 98765 43210</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">LOCATION</div>
+                        <div class="detail-value">Mumbai, India</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">EXPERIENCE</div>
+                        <div class="detail-value">3+ Years</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">LANGUAGES</div>
+                        <div class="detail-value">Hindi, English</div>
+                    </div>
+                    <div class="detail-item">
+                        <div class="detail-label">AVAILABILITY</div>
+                        <div class="detail-value">Open to Work</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bio Section -->
+    <section id="bio" class="section">
+        <h2>About Me</h2>
+        <div class="bio-content">
+            <p>Hello! I'm Saurav, a passionate full-stack developer with over 3 years of experience in creating innovative digital solutions. I specialize in modern web technologies and have a keen eye for user experience design.</p>
+            
+            <p>My journey in technology began during my college years, where I discovered my love for coding and problem-solving. Since then, I've worked on numerous projects ranging from e-commerce platforms to complex web applications, always striving to deliver high-quality, scalable solutions.</p>
+            
+            <p>I believe in continuous learning and staying updated with the latest industry trends. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or mentoring aspiring developers in my community.</p>
+            
+            <p>I'm passionate about creating technology that makes a positive impact on people's lives and am always excited to take on new challenges that push the boundaries of what's possible.</p>
+        </div>
+    </section>
+
+    <!-- Qualifications Section -->
+    <section id="qualifications" class="section">
+        <h2>Qualifications</h2>
+        <div class="qualifications-grid">
+            <div class="qualification-card">
+                <h3>Bachelor of Technology</h3>
+                <div class="institution">Computer Science Engineering</div>
+                <div class="institution">Indian Institute of Technology</div>
+                <div class="year">2018 - 2022</div>
+                <p>Specialized in Software Engineering and Data Structures. Graduated with First Class Honors.</p>
+            </div>
+            
+            <div class="qualification-card">
+                <h3>Full Stack Web Development</h3>
+                <div class="institution">Coding Bootcamp Certification</div>
+                <div class="institution">TechAcademy</div>
+                <div class="year">2022</div>
+                <p>Intensive 6-month program covering MERN stack, databases, and deployment strategies.</p>
+            </div>
+            
+            <div class="qualification-card">
+                <h3>AWS Cloud Practitioner</h3>
+                <div class="institution">Amazon Web Services</div>
+                <div class="year">2023</div>
+                <p>Certified in cloud computing fundamentals, AWS services, and cloud architecture best practices.</p>
+            </div>
+            
+            <div class="qualification-card">
+                <h3>Higher Secondary Education</h3>
+                <div class="institution">Science Stream (PCM)</div>
+                <div class="institution">Delhi Public School</div>
+                <div class="year">2016 - 2018</div>
+                <p>Focused on Mathematics and Computer Science. Scored 92% in board examinations.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card" onclick="showProjectDetails(this, 'E-Commerce Platform')">
+                <div class="project-image">🛒</div>
+                <div class="project-content">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A full-featured online shopping platform with user authentication, payment integration, inventory management, and admin dashboard. Built with modern technologies for optimal performance.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Stripe</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card" onclick="showProjectDetails(this, 'Task Management System')">
+                <div class="project-image">📋</div>
+                <div class="project-content">
+                    <h3>Task Management System</h3>
+                    <p>Collaborative project management tool with real-time updates, team collaboration features, file sharing, and advanced project tracking capabilities.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Express</span>
+                        <span class="tech-tag">Socket.io</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card" onclick="showProjectDetails(this, 'Weather Analytics Dashboard')">
+                <div class="project-image">🌤️</div>
+                <div class="project-content">
+                    <h3>Weather Analytics Dashboard</h3>
+                    <p>Interactive weather application with beautiful data visualizations, historical data analysis, location-based forecasts, and weather pattern predictions.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">D3.js</span>
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">FastAPI</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-card" onclick="showProjectDetails(this, 'Social Media Analytics')">
+                <div class="project-image">📊</div>
+                <div class="project-content">
+                    <h3>Social Media Analytics</h3>
+                    <p>Comprehensive analytics dashboard for social media metrics with real-time data processing, sentiment analysis, and automated reporting features.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Angular</span>
+                        <span class="tech-tag">Django</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">Chart.js</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements" class="section">
+        <h2>Achievements</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="achievement-icon">🏆</div>
+                <h3>Best Project Award</h3>
+                <p>Won the "Best Innovation Project" at TechFest 2023 for developing an AI-powered learning platform.</p>
+            </div>
+            
+            <div class="achievement-card">
+                <div class="achievement-icon">🥇</div>
+                <h3>Hackathon Winner</h3>
+                <p>First place in National Coding Hackathon 2022 with a team of 4 developers for creating a healthcare solution.</p>
+            </div>
+            
+            <div class="achievement-card">
+                <div class="achievement-icon">⭐</div>
+                <h3>Open Source Contributor</h3>
+                <p>Active contributor to 15+ open source projects with over 500 GitHub stars and 100+ pull requests merged.</p>
+            </div>
+            
+            <div class="achievement-card">
+                <div class="achievement-icon">🎓</div>
+                <h3>Academic Excellence</h3>
+                <p>Graduated with First Class Honors and received the Dean's List recognition for 3 consecutive semesters.</p>
+            </div>
+            
+            <div class="achievement-card">
+                <div class="achievement-icon">💡</div>
+                <h3>Innovation Award</h3>
+                <p>Received "Young Innovator Award" from the State Government for developing a smart city solution prototype.</p>
+            </div>
+            
+            <div class="achievement-card">
+                <div class="achievement-icon">🌟</div>
+                <h3>Community Leader</h3>
+                <p>Founded and lead a local developer community with 200+ members, organizing monthly tech meetups and workshops.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Query Section -->
+    <section id="query" class="section query-section">
+        <div class="query-content">
+            <h2>Have a Question?</h2>
+            <p>Feel free to reach out with any questions about my work, experience, or potential collaborations. I'd love to hear from you!</p>
+            
+            <form class="query-form" onsubmit="handleQuery(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Subject" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="5" placeholder="Your Question or Message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Query</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Collaboration Section -->
+    <section id="collaboration" class="section collaboration-section">
+        <div class="collaboration-content">
+            <h2>Let's Work Together</h2>
+            <p>I'm always excited to collaborate on innovative projects and work with talented individuals. If you have an interesting project or opportunity, let's discuss how we can create something amazing together!</p>
+            
+            <form class="collaboration-form" onsubmit="handleCollaboration(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Your Qualification" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Contact Number" required>
+                </div>
+                <div class="form-group full-width">
+                    <textarea rows="3" placeholder="Your Complete Address" required></textarea>
+                </div>
+                <div class="form-group full-width">
+                    <input type="text" placeholder="Company/Organization (Optional)">
+                </div>
+                <div class="form-group full-width">
+                    <input type="text" placeholder="Project Type/Industry" required>
+                </div>
+                <div class="form-group full-width">
+                    <textarea rows="4" placeholder="Tell me about your project idea and how we can collaborate..." required></textarea>
+                </div>
+                <div class="form-group full-width">
+                    <input type="text" placeholder="Expected Timeline" required>
+                </div>
+                <div class="form-group full-width">
+                    <input type="text" placeholder="Budget Range (Optional)">
+                </div>
+                <button type="submit" class="submit-btn">Start Collaboration</button>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            const offsetTop = element.offsetTop - 80;
+            
+            window.scrollTo({
+                top: offsetTop,
+                behavior: 'smooth'
+            });
+        }
+
+        // Download resume function
+        function downloadResume() {
+            // Create a sample resume content
+            const resumeContent = `
+SAURAV - FULL STACK DEVELOPER
+
+Contact Information:
+Email: saurav@example.com
+Phone: +91 98765 43210
+Location: Mumbai, India
+
+Professional Summary:
+Experienced Full Stack Developer with 3+ years of expertise in modern web technologies.
+Passionate about creating innovative digital solutions and user-centric applications.
+
+Education:
+- B.Tech in Computer Science Engineering, IIT (2018-2022)
+- Full Stack Web Development Certification, TechAcademy (2022)
+- AWS Cloud Practitioner Certified (2023)
+
+Technical Skills:
+- Frontend: React, Vue.js, Angular, HTML5, CSS3, JavaScript
+- Backend: Node.js, Python, Django, Express.js
+- Databases: MongoDB, PostgreSQL, MySQL
+- Cloud: AWS, Docker, Kubernetes
+- Tools: Git, Jenkins, Webpack
+
+Experience:
+- Led development of multiple full-stack applications
+- Contributed to 15+ open source projects
+- Won Best Innovation Project at TechFest 2023
+- Active community leader and mentor
+
+Projects:
+- E-Commerce Platform (React, Node.js, MongoDB)
+- Task Management System (Vue.js, Express, PostgreSQL)
+- Weather Analytics Dashboard (React, Python, FastAPI)
+- Social Media Analytics (Angular, Django, Redis)
+
+Achievements:
+- Best Project Award at TechFest 2023
+- First place in National Coding Hackathon 2022
+- Young Innovator Award from State Government
+- Founded local developer community with 200+ members
+            `;
+
+            // Create and download the resume
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Saurav_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+
+            // Show success message
+            alert('Resume downloaded successfully! 📄');
+        }
+
+        // Show project details
+        function showProjectDetails(card, projectName) {
+            card.style.transform = 'scale(1.02)';
+            card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
+            
+            setTimeout(() => {
+                card.style.transform = 'translateY(-5px)';
+                card.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+                alert(`${projectName} - Click to view more details or visit the live demo!`);
+            }, 300);
+        }
+
+        // Handle query form submission
+        function handleQuery(event) {
+            event.preventDefault();
+            
+            const submitBtn = event.target.querySelector('.btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.style.background = '#27ae60';
+            
+            setTimeout(() => {
+                submitBtn.textContent = 'Query Sent! ✓';
+                submitBtn.style.background = '#2ecc71';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '';
+                    event.target.reset();
+                    alert('Thank you for your query! I will get back to you within 24 hours.');
+                }, 2000);
+            }, 1500);
+        }
+
+        // Handle collaboration form submission
+        function handleCollaboration(event) {
+            event.preventDefault();
+            
+            const submitBtn = event.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Processing...';
+            submitBtn.style.background = '#27ae60';
+            
+            setTimeout(() => {
+                submitBtn.textContent = 'Collaboration Request Sent! ✓';
+                submitBtn.style.background = '#2ecc71';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '';
+                    event.target.reset();
+                    alert('Thank you for your collaboration request! I will review your proposal and get back to you soon. Looking forward to working together!');
+                }, 3000);
+            }, 2000);
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Add scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initialize scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.section, .profile-section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.style.transform = 'translateY(30px)';
+                section.style.transition = 'all 0.6s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9873b04ec43aa75d',t:'MTc1OTIzNDk3Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
