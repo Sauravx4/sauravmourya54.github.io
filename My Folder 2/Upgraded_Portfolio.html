@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saurav — Portfolio</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Saurav — Full Stack Developer Portfolio. Explore projects, experience, and resume.">
+  <meta property="og:title" content="Saurav — Portfolio">
+  <meta property="og:description" content="Full Stack Developer showcasing modern web projects and skills.">
+
+  <!-- Fonts & AOS -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- jsPDF for PDF resume -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <style>
+    :root{--accent:#0a3d62}
+    body {margin:0;font-family:Poppins, sans-serif;background:#ffffff;color:#222;transition:background .3s,color .3s}
+    body.dark {background:#0b0b0d;color:#eee}
+    header{width:100%;background:#fff;position:sticky;top:0;z-index:999;box-shadow:0 2px 6px rgba(0,0,0,0.08)}
+    body.dark header{background:#111}
+    .nav-container{max-width:1200px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
+    .logo{font-size:22px;font-weight:700;color:var(--accent)}
+    nav a{margin-left:18px;text-decoration:none;color:inherit;font-weight:500;font-size:15px}
+    #toggleDark{cursor:pointer;padding:8px 12px;background:var(--accent);color:white;border-radius:6px;border:none;font-size:14px}
+    .hero{padding:70px 20px;background:url('https://dineshscientific.com/wp-content/uploads/2023/05/banner-img.jpg') center/cover no-repeat;color:white;position:relative}
+    .hero-overlay{background:rgba(0,0,0,0.45);position:absolute;top:0;left:0;width:100%;height:100%}
+    .hero-content{position:relative;max-width:1100px;margin:auto;padding:40px 20px}
+    .hero h1{font-size:40px;margin:0 0 12px}
+    .section{padding:50px 20px;max-width:1100px;margin:auto}
+    .section h2{color:var(--accent);text-align:center;margin-bottom:30px}
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px}
+    .card{background:#fff;border-radius:10px;padding:18px;box-shadow:0 6px 18px rgba(14,30,37,0.06);transition:transform .18s}
+    body.dark .card{background:#121214;color:#ddd}
+    .card:hover{transform:translateY(-6px)}
+    .card h3{margin:0 0 8px;color:var(--accent)}
+    .card p{margin:0;color:#333}
+
+    .admin-box{background:#fff;padding:22px;border-radius:10px;box-shadow:0 8px 30px rgba(2,6,23,0.06);margin-bottom:18px}
+    body.dark .admin-box{background:#101113;color:#ddd}
+    .admin-input{width:100%;padding:10px;margin-bottom:12px;border:1px solid #ddd;border-radius:8px}
+    body.dark .admin-input{background:#121214;border-color:#333;color:#ddd}
+    .admin-btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;border:0;cursor:pointer}
+        /* Collaboration Section */
+        .collaboration-section {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+            color: white;
+        }
+
+        .collaboration-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .collaboration-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .collaboration-form .form-group {
+            grid-column: span 1;
+        }
+
+        .collaboration-form .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .collaboration-form input,
+        .collaboration-form textarea {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            backdrop-filter: blur(10px);
+        }
+
+        .collaboration-form input::placeholder,
+        .collaboration-form textarea::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .collaboration-form input:focus,
+        .collaboration-form textarea:focus {
+            border-color: white;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            padding: 1rem 2rem;
+            background: white;
+            color: #e74c3c;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            font-size: 1rem;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+/* Qualifications Section */
+        .qualifications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .qualification-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border-top: 4px solid #e74c3c;
+        }
+
+        .qualification-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .qualification-card h3 {
+            color: #e74c3c;
+            margin-bottom: 1rem;
+        }
+
+        .qualification-card .institution {
+            font-weight: 600;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .qualification-card .year {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+    #imagePreview{width:100%;height:170px;border:2px dashed #d6d6d6;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;background-size:cover;background-position:center;color:#666}
+    body.dark #imagePreview{border-color:#333;color:#bbb}
+
+    .hidden{display:none}
+    .controls{display:flex;gap:8px;flex-wrap:wrap}
+    .small-btn{padding:6px 8px;border-radius:6px;border:0;cursor:pointer}
+    .danger{background:#c0392b;color:white}
+
+    @media(max-width:700px){.hero h1{font-size:28px}.nav-container{padding:10px}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="nav-container">
+    <div  data-aos="fade-up" class="logo">Saurav</div>
+    <nav>
+      <a href="#hero">Home</a>
+      <a href="#projects">Projects</a>
+      <a href="#admin">Admin</a>
+      <button id="toggleDark">Dark Mode</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="hero" data-aos="fade-up">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 data-aos="fade-up">Hi, I'm Saurav</h1>
+    <p>A passionate web developer who builds interactive and scalable web apps.</p>
+<p>Hello! I'm Saurav, a passionate full-stack developer with over 3 years of experience in creating innovative digital solutions. I specialize in modern web technologies and have a keen eye for user experience design.</p>
+            
+            <p>My journey in technology began during my college years, where I discovered my love for coding and problem-solving. Since then, I've worked on numerous projects ranging from e-commerce platforms to complex web applications, always striving to deliver high-quality, scalable solutions.</p>
+            
+            <p>I believe in continuous learning and staying updated with the latest industry trends. When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or mentoring aspiring developers in my community.</p>
+            
+            <p>I'm passionate about creating technology that makes a positive impact on people's lives and am always excited to take on new challenges that push the boundaries of what's possible.</p>
+    <div style="margin-top:14px">
+      <button class="admin-btn" onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})">View My Work</button>
+      <button class="admin-btn" style="background:#2ecc71;margin-left:8px" onclick="downloadResume()">Download PDF Resume</button>
+    </div>
+  </div>
+</section>
+    <!-- Qualifications Section -->
+    <section id="qualifications" class="section">
+        <h2 data-aos="fade-up">Qualifications</h2>
+        <div class="qualifications-grid">
+            <div class="qualification-card">
+                <h3>Bachelor of Technology</h3>
+                <div class="institution">Artificial Intelligence and Machine Learning</div>
+                <div class="institution">Ambala College of Engineering and Applied Research</div>
+                <div class="year">2022 - 2026</div>
+                <p>Specialized in Software Engineering and Data Structures. Graduated with First Class Honors.</p>
+            </div>
+            
+            <div class="qualification-card">
+                <h3>Full Stack Web Development</h3>
+                <div class="institution">Thinknext Pvt.Ltd.</div>
+                <div class="institution">TechAcademy</div>
+                <div class="year">2023</div>
+                <p>Intensive 6-month program covering MERN stack, databases, and deployment strategies.</p>
+            </div>
+            <div class="qualification-card">
+                <h3>Higher Secondary Education</h3>
+                <div class="institution">Science Stream (PCM)</div>
+                <div class="institution">Farooka Khalsa Senior Secondary School</div>
+                <div class="year">2018 - 2020</div>
+                <p>Focused on Mathematics and Computer Science. Scored 92% in board examinations.</p>
+            </div>
+        </div>
+    </section>
+    
+
+<section class="section" id="projects">
+  <h2 data-aos="fade-up">Featured Projects</h2>
+  <div class="cards" id="projectCards"></div>
+</section>
+<!-- Collaboration Section -->
+    <section id="collaboration" class="section collaboration-section">
+        <div class="collaboration-content">
+            <h2 data-aos="fade-up">Let's Work Together</h2>
+            <p>I'm always excited to collaborate on innovative projects and work with talented individuals. If you have an interesting project or opportunity, let's discuss how we can create something amazing together!</p>
+            
+            <form class="collaboration-form" onsubmit="handleCollaboration(event)">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Your Qualification" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Contact Number" required>
+                </div>
+                <div class="form-group full-width">
+                    <textarea rows="3" placeholder="Your Complete Address" required></textarea>
+                </div>
+                <div class="form-group full-width">
+                    <input type="text" placeholder="Company/Organization (Optional)">
+                </div>
+                <div class="form-group full-width">
+                    <input type="text" placeholder="Project Type/Industry" required>
+                </div>
+                <div class="form-group full-width">
+                    <textarea rows="4" placeholder="Tell me about your project idea and how we can collaborate..." required></textarea>
+                </div>
+                <div class="form-group full-width">
+                    <input type="text" placeholder="Expected Timeline" required>
+                </div>
+                <div class="form-group full-width">
+                    <input type="text" placeholder="Budget Range (Optional)">
+                </div>
+                <button type="submit" class="submit-btn">Start Collaboration</button>
+            </form>
+        </div>
+    </section>
+
+<section class="section" id="admin">
+  <h2>Admin Dashboard</h2>
+
+  <div class="admin-box" id="adminLoginBox">
+    <h3>Admin Login</h3>
+    <input class="admin-input" type="password" id="adminPassword" placeholder="Enter Password">
+    <div class="controls">
+      <button class="admin-btn" id="loginBtn">Login</button>
+      <button class="small-btn" id="demoBtn">Load Demo Projects</button>
+    </div>
+  </div>
+
+  <div class="admin-box hidden" id="adminDashboard">
+    <h3>Add Project</h3>
+
+    <!-- Resume Upload Section -->
+    <h3 style="margin-top:10px">Upload Resume (PDF)</h3>
+    <input type="file" id="resumeUpload" class="admin-input" accept="application/pdf" />
+    <button class="admin-btn" id="uploadResumeBtn">Upload Resume</button>
+    <p id="resumeStatus" style="margin-top:8px;color:#0a3d62;font-size:14px"></p>
+
+    <!-- Project Controls -->
+    <div id="imagePreview">Project Image Preview</div>
+    <input type="file" id="imgUpload" class="admin-input" accept="image/*" />
+
+    <input class="admin-input" id="newTitle" placeholder="Project Title">
+    <input class="admin-input" id="newDesc" placeholder="Description">
+    <input class="admin-input" id="newLink" placeholder="Project Link (URL)">
+    <div style="margin-top:8px" class="controls">
+      <button class="admin-btn" id="addProjectBtn">Add Project</button>
+      <button class="small-btn" id="logoutBtn">Logout</button>
+    </div>
+
+    <h3 style="margin-top:20px">Manage Projects</h3>
+    <div id="adminProjectList"></div>
+  </div>
+</section>
+
+
+<!-- AOS & js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>AOS.init()</script>
+
+<script>
+// Utilities
+function escapeHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function safeUrl(u){try{return encodeURI(String(u));}catch(e){return '#';}}
+ // Handle collaboration form submission
+        function handleCollaboration(event) {
+            event.preventDefault();
+            
+            const submitBtn = event.target.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Processing...';
+            submitBtn.style.background = '#27ae60';
+            
+            setTimeout(() => {
+                submitBtn.textContent = 'Collaboration Request Sent! ✓';
+                submitBtn.style.background = '#2ecc71';
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = '';
+                    event.target.reset();
+                    alert('Thank you for your collaboration request! I will review your proposal and get back to you soon. Looking forward to working together!');
+                }, 3000);
+            }, 2000);
+        }
+
+
+// DEMO PROJECT LOADER
+function prefillDemo(){ projects=[
+  {title:'Demo Project 1',desc:'Sample description 1',link:'https://example.com',image:'',published:true,created:Date.now()},
+  {title:'Demo Project 2',desc:'Sample description 2',link:'https://example.com',image:'',published:true,created:Date.now()}
+]; save(); alert('Demo projects loaded!'); }
+
+// DOM refs (queried at runtime)
+const toggleDarkBtn = document.getElementById('toggleDark');
+const loginBtn = document.getElementById('loginBtn');
+const demoBtn = document.getElementById('demoBtn');
+const uploadResumeBtn = document.getElementById('uploadResumeBtn');
+const addProjectBtn = document.getElementById('addProjectBtn');
+const logoutBtn = document.getElementById('logoutBtn');
+
+const projectCards = document.getElementById('projectCards');
+const adminLoginBox = document.getElementById('adminLoginBox');
+const adminDashboard = document.getElementById('adminDashboard');
+const adminPasswordInput = document.getElementById('adminPassword');
+const newTitle = document.getElementById('newTitle');
+const newDesc = document.getElementById('newDesc');
+const newLink = document.getElementById('newLink');
+const imgUpload = document.getElementById('imgUpload');
+const adminProjectList = document.getElementById('adminProjectList');
+const imagePreview = document.getElementById('imagePreview');
+const resumeUploadInput = document.getElementById('resumeUpload');
+const resumeStatus = document.getElementById('resumeStatus');
+
+let projects = JSON.parse(localStorage.getItem('projects') || '[]');
+let resumeFile = localStorage.getItem('resumeFile') || null;
+
+// Dark mode init
+(function(){
+  try{
+    if(localStorage.getItem('darkmode')==='on') document.body.classList.add('dark');
+  }catch(e){console.warn('dark mode init error',e)}
+})();
+
+// Attach event listeners (defensive)
+if(toggleDarkBtn) toggleDarkBtn.addEventListener('click', ()=>{
+  document.body.classList.toggle('dark');
+  try{ localStorage.setItem('darkmode', document.body.classList.contains('dark')?'on':'off'); }catch(e){}
+});
+if(loginBtn) loginBtn.addEventListener('click', adminLogin);
+if(demoBtn) demoBtn.addEventListener('click', prefillDemo);
+if(uploadResumeBtn) uploadResumeBtn.addEventListener('click', ()=>{ uploadResume(resumeUploadInput); });
+if(addProjectBtn) addProjectBtn.addEventListener('click', addProjectAdmin);
+if(logoutBtn) logoutBtn.addEventListener('click', ()=>{ adminDashboard.classList.add('hidden'); adminLoginBox.classList.remove('hidden'); });
+
+// Image preview
+if(imgUpload) imgUpload.addEventListener('change', ()=>{
+  const f = imgUpload.files[0];
+  if(!f){ imagePreview.style.backgroundImage=''; imagePreview.textContent='Project Image Preview'; return; }
+  const url = URL.createObjectURL(f);
+  imagePreview.style.backgroundImage = `url(${url})`;
+  imagePreview.textContent = '';
+});
+
+function save(){ localStorage.setItem('projects', JSON.stringify(projects)); renderProjects(); renderAdmin(); }
+
+function adminLogin(){
+  const pw = (adminPasswordInput && adminPasswordInput.value) ? adminPasswordInput.value.trim() : '';
+  if(pw === 'admin123'){
+    if(adminLoginBox) adminLoginBox.classList.add('hidden');
+    if(adminDashboard) adminDashboard.classList.remove('hidden');
+    if(adminPasswordInput) adminPasswordInput.value='';
+    // show resume status
+    if(resumeFile && resumeStatus) resumeStatus.textContent = 'Resume already uploaded ✔';
+  } else {
+    alert('Wrong password');
+  }
+}
+
+function addProjectAdmin(){
+  const t = (newTitle && newTitle.value) ? newTitle.value.trim() : '';
+  const d = (newDesc && newDesc.value) ? newDesc.value.trim() : '';
+  const l = (newLink && newLink.value) ? newLink.value.trim() : '';
+  if(!t || !d || !l) { alert('All fields required'); return; }
+  if(imgUpload && imgUpload.files[0]){
+    const fr = new FileReader();
+    fr.onload = e=>{ projects.unshift({title:t,desc:d,link:l,image:e.target.result,published:true,created:Date.now()}); save(); clearAddForm(); };
+    fr.readAsDataURL(imgUpload.files[0]);
+  } else {
+    projects.unshift({title:t,desc:d,link:l,image:'',published:true,created:Date.now()}); save(); clearAddForm();
+  }
+}
+
+function clearAddForm(){ if(newTitle) newTitle.value=''; if(newDesc) newDesc.value=''; if(newLink) newLink.value=''; if(imgUpload) imgUpload.value=''; if(imagePreview) { imagePreview.style.backgroundImage=''; imagePreview.textContent='Project Image Preview'; } }
+
+function deleteProject(i){ if(!confirm('Delete this project?')) return; projects.splice(i,1); save(); }
+function togglePublish(i){ projects[i].published = !projects[i].published; save(); }
+
+function renderProjects(){ projectCards.innerHTML=''; const list = projects.filter(p=>p.published);
+  if(list.length===0){ projectCards.innerHTML = '<p style="text-align:center;color:#666">No public projects yet.</p>'; return; }
+  list.forEach(p=>{
+    const card = document.createElement('div'); card.className='card';
+    const imgHtml = p.image? `<div style="height:140px;border-radius:8px;overflow:hidden;background-image:url(${safeUrl(p.image)});background-size:cover;margin-bottom:12px"></div>` : '';
+    card.innerHTML = `${imgHtml}<h3>${escapeHtml(p.title)}</h3><p>${escapeHtml(p.desc)}</p><p style="margin-top:12px"><a href="${safeUrl(p.link)}" target="_blank" rel="noopener">Open Project →</a></p>`;
+    projectCards.appendChild(card);
+  }); }
+
+function renderAdmin(){ adminProjectList.innerHTML=''; if(projects.length===0){ adminProjectList.innerHTML='<p style="color:#666">No projects saved.</p>'; return; }
+  projects.forEach((p,i)=>{
+    const div = document.createElement('div'); div.className='admin-box';
+    const inner = document.createElement('div'); inner.style.display='flex'; inner.style.justifyContent='space-between'; inner.style.alignItems='center';
+    const left = document.createElement('div'); left.innerHTML = `<b>${escapeHtml(p.title)}</b><div style="color:#666;margin-top:6px">${escapeHtml(p.desc)}</div>`;
+    const right = document.createElement('div');
+    const open = document.createElement('a'); open.href = safeUrl(p.link); open.target='_blank'; open.rel='noopener'; open.textContent='Open'; open.style.marginRight='8px';
+    const pub = document.createElement('button'); pub.className='small-btn'; pub.textContent = p.published? 'Unpublish' : 'Publish'; pub.addEventListener('click', ()=>{ togglePublish(i); });
+    const del = document.createElement('button'); del.className='small-btn danger'; del.textContent='Delete'; del.addEventListener('click', ()=>{ deleteProject(i); });
+    right.appendChild(open); right.appendChild(pub); right.appendChild(del);
+    inner.appendChild(left); inner.appendChild(right); div.appendChild(inner);
+    adminProjectList.appendChild(div);
+  }); }
+
+// Resume upload and download
+function uploadResume(input){
+  const file = input && input.files && input.files[0];
+  if(!file){ alert('No file selected.'); return; }
+  if(file.type !== 'application/pdf'){ alert('Only PDF files allowed'); return; }
+  const reader = new FileReader();
+  reader.onload = function(e){ resumeFile = e.target.result; try{ localStorage.setItem('resumeFile', resumeFile); if(resumeStatus) resumeStatus.textContent = 'Uploaded successfully ✔'; alert('Resume uploaded successfully!'); }catch(err){ console.error(err); alert('Saving failed — file may be too large for localStorage.'); } };
+  reader.readAsDataURL(file);
+}
+
+function downloadResume(){
+  if(!resumeFile){ alert('No resume uploaded yet.'); return; }
+  const a = document.createElement('a'); a.href = resumeFile; a.download = 'Saurav_Resume.pdf'; document.body.appendChild(a); a.click(); a.remove();
+}
+
+// initialize
+renderProjects(); renderAdmin();
+
+</script>
+
+</body>
+</html>
