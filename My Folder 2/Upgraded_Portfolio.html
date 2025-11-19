@@ -158,8 +158,60 @@
 <body>
 
 <header>
+  <div class="nav-container"><img src="https://media.canva.com/v2/image-resize/format:JPG/height:550/quality:92/uri:ifs%3A%2F%2FM%2Fe4bb0417c04a45f8a7eb11d82236e469/watermark:F/width:550?csig=AAAAAAAAAAAAAAAAAAAAAAqtekVwVhjc5JkL9Iz-mpA0aed606pFMLJbluV3VO9u&exp=1763546543&osig=AAAAAAAAAAAAAAAAAAAAAC_rLf_Otrap07OL4rAaiF0Q0v5TxDvO9No7o5pt7ItV&signer=media-rpc&x-canva-quality=thumbnail_large" alt="Dinesh Scientific Logo" class="navbar-logo" style="max-height: 55px;">
   <div class="nav-container">
     <div  data-aos="fade-up" class="logo">Saurav</div>
+    <!-- ⭐⭐⭐ SOCIAL MEDIA ICONS ONLY ⭐⭐⭐ -->
+<style>
+.social-icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 15px;
+}
+
+.social-icons a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(4px);
+  transition: 0.25s;
+}
+
+.social-icons a:hover {
+  transform: translateY(-4px) scale(1.1);
+  background: rgba(0,255,200,0.25);
+}
+
+.social-icons img {
+  width: 22px;
+  filter: drop-shadow(0 0 4px #00eaff);
+}
+</style>
+
+<div class="social-icons">
+
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/share/1CddhYmheu/" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook">
+  </a>
+
+  <!-- Instagram -->
+  <a href="https://instagram.com/Souravmourya Souravmourya" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+  </a>
+
+  <!-- LinkedIn -->
+  <a href="https://linkedin.com/in/saurav-mourya-596253274" target="_blank">
+    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+  </a>
+
+</div>
+<!-- ⭐⭐⭐ END SOCIAL MEDIA ICONS ⭐⭐⭐ -->
+
     <nav>
       <a href="#hero">Home</a>
       <a href="#projects">Projects</a>
@@ -171,6 +223,87 @@
 
 <section class="hero" id="hero" data-aos="fade-up">
   <div class="hero-overlay"></div>
+  <!-- 🔥 AI NEURAL NETWORK (ONLY INSIDE HERO) 🔥 -->
+<canvas id="neuralNetCanvasHero"
+        style="position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none;">
+</canvas>
+
+<style>
+/* Neural glow effect */
+#neuralNetCanvasHero {
+  filter: drop-shadow(0 0 6px #00eaff);
+}
+</style>
+
+<script>
+// === NEURAL NETWORK ONLY FOR HERO ===
+(function(){
+  const canvas = document.getElementById('neuralNetCanvasHero');
+  const ctx = canvas.getContext('2d');
+
+  let w, h, nodes = [];
+
+  function resize() {
+    w = canvas.width  = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function makeNodes() {
+    nodes = [];
+    for (let i = 0; i < 50; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        z: Math.random() * 1.5 + 0.5,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3
+      });
+    }
+  }
+  makeNodes();
+
+  function animate(){
+    ctx.clearRect(0,0,w,h);
+
+    nodes.forEach(n=>{
+      n.x += n.vx * n.z;
+      n.y += n.vy * n.z;
+      if(n.x<0||n.x>w) n.vx *= -1;
+      if(n.y<0||n.y>h) n.vy *= -1;
+    });
+
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        let a=nodes[i], b=nodes[j];
+        let dx=a.x-b.x, dy=a.y-b.y;
+        let dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<130){
+          ctx.strokeStyle=`rgba(0,180,255,${1-(dist/130)})`;
+          ctx.lineWidth=1;
+          ctx.beginPath();
+          ctx.moveTo(a.x,a.y);
+          ctx.lineTo(b.x,b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    nodes.forEach(n=>{
+      ctx.fillStyle="rgba(0,220,255,0.9)";
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,2*n.z,0,Math.PI*2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+</script>
+<!-- 🔥 END NEURAL NETWORK (HERO ONLY) 🔥 -->
+
   <div class="hero-content">
     <h1 data-aos="fade-up">Hi, I'm Saurav</h1>
     <p>A passionate web developer who builds interactive and scalable web apps.</p>
